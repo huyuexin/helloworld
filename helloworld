@@ -1,0 +1,749 @@
+# python
+标签（空格分隔）： python
+---
+# 变量与类型
+
+## 1. list []切片 第一表开始序号，第二表结束后不用的开始序号
+a=[1,2,3]
+b=a
+当b 变化的时候，a会变化
+**c=a[0:2]**
+当c变化的时候 ，a 不会变化
+**切片[] 第一个数字是开始的序号，第二个数是最后不要的序号**
+
+## 2. range 生成序列
+在2 3 版本不一样 2中打印全部数 3中输出range
+如要打印出来，
+```python
+for i in range(3,31,3)
+    print i
+```
+## 3.换行 空格
+```python
+print("langer:\n\tpython\n\tc++\n\tjava")
+```
+## 4.删除空白，用于存储用户输入
+```python
+favorite_language=' python '
+favorite_language.rstrip()
+favorite_language.lstrip()
+```
+**注意赋值给原参数**
+
+## 5.首字母大写，全部大小写
+```python
+name='ada lovelace'
+print (name.title())
+print (name.upper())
+print (name.lower())
+```
+
+----
+#list
+
+## 1.增加 删除list元素
+```python
+gongxiandanche=['ofo','mobye','fenghuang']
+print(gongxiandanche[0])
+gongxiandanche.append('hellobye')
+
+x=gongxiandanche.pop(-1)
+print(gongxiandanche)
+print(x)
+
+gongxiandanche.insert(0,'yamaha')
+
+del gongxiandanche[0]
+
+gongxiandanche.remove('fenghuang')
+print(gongxiandanche)
+```
+##2.复制list 需要切片复制 square1=square2[:]
+---
+# If
+##1.认识大小写
+```python
+car='bmw'
+if car=='bmw':
+    print('yes')
+else:
+    print('no')
+#python认识大小写
+```
+>yes
+>car.lower()先变小写再比较
+##2.if-elif-else
+```python
+if age<4:
+    print('不用钱')
+elif age<18:
+    print('交一半')
+else:
+    print('全部')
+```
+###3. 遍历字典
+```python
+favorite_languages={
+    'jen':'python',
+    'sarah':'c',
+    'edward':'ruby',
+    'phil':'python'
+}
+for name,language in favorite_languages.items():
+    print(name.title() +" 's favorite language is "+ language.title() + '.')
+    #
+```
+>Jen 's favorite language is Python.
+Sarah 's favorite language is C.
+Edward 's favorite language is Ruby.
+Phil 's favorite language is Python.
+**item()存储**
+
+##4.使用keys() values()访问键 值
+```python
+for name in favorite_language.keys()
+for language in favorite_language.values()
+```
+---
+#用户输入
+##1. python2.7中用 raw_input()  3.0用input（）
+##2. 注意数字转换int()
+
+```python
+age =input("how old are you?")
+age=int(age)
+if age>18:
+    print("big")
+else:
+    print("small")
+```
+
+##3. 求余数 %
+```python
+num=input("input a num ,i will say i is even or odd")
+num=int(num)
+if num % 2 == 0 :
+    print("\n the num " + str(num) + " is even")
+else :
+    print("\n the num" + str(num) + " is odd")
+
+```
+
+##4.设置活动标记
+```python
+#travel旅游问卷调查
+position = True
+#标记结束  大写的
+travel={}
+while position:
+    name=input("\n what's your name?")
+    visiter=input("\n where's favorite want to travel?")
+    travel[name] = visiter
+    positioner=input("anyone go on? yes or no?")
+    if positioner=='no':
+        position=False
+print("\n---Poll Results")
+for name,visiter in travel.items():
+    print(name+" want to travel to "+visiter+".")
+```
+---
+#函数
+#1.形参和实参
+```python
+def pets(pet_name,pet_type='dog'):
+    print("\n!'m have a " + pet_type)
+    print(" my's" + pet_type + " name is " +pet_name + "!")
+#位置实参 参数调用  默认参数
+pets('wawa')
+pets('小花',"猫")
+pets(pet_type='龙',pet_name='小屁妞')
+#关键字实参调用
+```
+#2.不修改传递的参数列表的时候要 funtion_name(list_name[:]
+向函数传递的是list的副本，而不改变原list
+
+#3.任意数量实参
+```python
+def make_piz(size,*toppings):
+    print("\n making a "+str(size)+"piz with flowing:")
+    for topping in toppings:
+        print(" -"+topping)
+make_piz(16,'naiyou')
+make_piz(12,'X','z','A')
+```
+
+#4.导入函数的方法
+##1.导入整个模板
+```python
+import pizza
+pizza.make_pizza(16,'pepperoni')
+#模块名.函数名引用
+```
+##2.导入特定函数
+```
+from pizza import make_pizza
+make_pizza(16,'pepperoni')
+```
+##3.使用as于函数别名
+```
+from pizza import make_pizza as mp
+mp(16,'pepperoni')
+```
+##4.使用as于模块别名
+```
+import pizza as p
+p.make_pizza(16,'pepperoni')
+```
+##5.导入模块中所有的函数
+```
+from pizza import *
+making_pizza(16,'pepperoni')
+#最好不使用此方法， 同名函数覆盖问题
+```
+---
+
+#类
+##1.创建类
+```python
+#dog.py
+class Dog():
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+        self.friend='yuki'
+    def sit(self):
+        print(self.name.title()+" is now sitting!")
+
+    def roll_over(self):
+        print(self.name.title()+" rolled over.")
+    def is_age(self):
+        print(self.name.title()+ " 's age is " + str(self.age) +" .")
+    def change_friend(self,new_friend):
+        self.friend=new_friend
+
+
+my_dog=Dog('hu',15)
+my_dog.is_age()
+my_dog.rool_over()
+my_dog.sit()
+print(my_dog.name.title() + "'s age is " + str(my_dog.age) + '!')
+```
+##2.修改属性值
+```
+print(my_dog.name.title()+" 'friend is " + my_dog.friend)
+#通过直接修改属性值
+my_dog.friend='cici'
+print(my_dog.name.title()+" 'friend is " + my_dog.friend)
+#通过方法修改属性
+my_dog.change_friend('hulili')
+print(my_dog.name.title()+" 'friend is " + my_dog.friend)
+```
+##3 **继承** 子类定义与引用类 
+```python
+class GuangdongDog():
+    def __init__(self,eat_what='everything'):
+        self.eat_what=eat_what
+    def describe_eat(self):
+        print("this dog can eat"+self.eat_what)
+
+
+class ChinaDog(Dog):
+    def __init__(self,name,age):
+        super().__init__(name,age)
+        #python2.7需要指定子类名称和self 另外class(object)
+        #super(ChinaDog,self).__init__(name,age)
+        #定义子类属性
+        self.from_where='中国'
+    #引用类 创建实例
+        self.guangdong_dong=GuangdongDog()
+    #子类方法定义
+    def describe_from_where(self):
+        print(self.name.title()+" is from " + self.from_where)
+    #重写父类属性，函数覆盖
+    def sit(self):
+        print(self.name.title() + " 能用中文坐下指挥，好聪明")
+
+
+my_dog1=ChinaDog('hudong1',12)
+my_dog1.sit()
+print(my_dog1.name.title()+" 'friend is " + my_dog1.friend)
+my_dog1.describe_from_where()
+my_dog1.sit()
+#引用独立类
+my_dog1.guangdong_dong.describe_eat()
+
+```
+
+##4.导入类
+###1.导入类
+```
+#dog.py
+from dog import Dog,ChinaDog
+my_dog=Dog('ji',12)
+your_dog=ChinaDog('cc',13)
+```
+###2.导入整个模块后使用 模块名.类名访问相关类
+**建议使用**
+```
+import dog
+mu_dog=dog.Dog('ji',12)
+your_dog=dog.ChinaDog('cc',13)
+```
+###3.所有类导入 不建议使用
+```
+from dog import *
+```
+##5.类编码风格
+>*类名使用驼峰命名法，类名中每个单词首字母大写而不使用划线*
+>*实例名和模块名使用小写，单词中加下划线*
+
+---
+#文件与异常
+
+##1.文件读取
+### 整个文件读取
+```python
+
+with open('pi_digits.txt') as file_object:
+    contents = file_object.read()
+    print(contents.rstrip())
+```    
+### 相对目录下  /
+```
+file_path = 'text_files/派.txt'
+with open(file_path) as file_object:
+    contents = file_object.read()
+    print(contents.rstrip())
+```
+### 逐行读取 替换
+```
+file_name = 'pi_digits.txt'
+with open(file_name) as file_object:
+    for line in file_object:
+        print(line.rstrip())
+file_path='pi_digits.txt'
+with open(file_path) as file_object:
+    lines = file_object.readlines()
+    #readlines()赋值
+pi_string=''
+for line in lines:
+    pi_string+=line.strip()
+print(pi_string)
+print(len(pi_string))
+#打印前面几位  用于长数据
+print(pi_string[:10]+'...')
+change_pi=pi_string
+#更换数据 替换replace
+print(change_pi.replace('3','0'))
+```
+##2.读写模式
+>*读取模式 'r'   只读
+>*写入模式 ‘w’   清除原来文件内容
+>*附加模式 'a'   添加内容
+>*读取写入模式 ‘r+’
+```
+filename='programming.txt'
+with open(filename,'w') as file_object:
+    file_object.write('I love programming!\n')
+    file_object.write('I love abc.\n')
+
+with open(filename,'a') as file_object:
+    file_object.write('I love fad.\n')
+```
+##3.处理ZeroDivisionError异常  除0
+```
+print("give me two numbers")
+print("enter Q to quit")
+while True:
+    first_number=input("\n First number is ?")
+    if  first_number == 'q':
+        break
+    second_number=input("\n second number is ?")
+    if  second_number == 'q':
+        break
+    try:
+        answer=int(first_number)/int(second_number)
+    except ZeroDivisionError:
+        print("you can't divide by zero!")
+    else:
+        print(answer)
+```
+##4.文件读取异常
+```python
+#FileNotFoundError找不到文件错误
+def count_words(filename):
+    try:
+        with open(filename) as fileobject:
+            contents = fileobject.read()
+    except FileNotFoundError:
+        msg='sorry th file  '+filename+" dose no exist"
+        print(msg)
+        #也可以直接 pass
+    else:
+        words=contents.split()
+        num_words=len(words)
+        print(filename +" has words is " + str(num_words))
+filename = 'alice.txt'
+count_words(filename)
+filename1 = 'pi_digits.txt'
+count_words(filename1)
+```
+##5.简单的存储 json dump和load方法
+存储 json.dump(numbers,f_obj) 
+```
+#number_writer.py
+import json
+numbers=[2,3,4,5,6,8,9]
+filename='numbers.json'
+with open(filename,'w') as f_obj:
+    json.dump(numbers,f_obj)
+```
+读取  numbers=json.load(f_obj)
+```
+#read_numbers.py
+import json
+filename='numbers.json'
+with open(filename) as f_obj:
+    numbers=json.load(f_obj)
+print(numbers)
+```
+**重构** 读取 存储同时
+```
+import json
+
+def get_stored_usename():
+    filename = 'use_name.json'
+    try:
+        with open(filename) as f_obj:
+            usename = json.load(f_obj)
+
+    except FileNotFoundError:
+        return None
+    else:
+        return usename
+
+def get_new_usename():
+    filename = 'use_name.json'
+    usename = input("What's your name?")
+    with open(filename, 'w') as f_obj:
+        json.dump(usename, f_obj)
+    return usename
+
+
+def greet_user():
+    usename=get_stored_usename()
+    if usename:
+        print("Welecome back "+usename+'!')
+    else:
+        usename=get_new_usename()
+        print("We will remenber your name")
+greet_user()
+```
+
+#测试类
+##1、断言
+```
+#name_function.py
+def get_formatted_name(first, last):
+    full_name = first+' '+last
+    return full_name.title()
+#test_name_function    
+import unittest
+from name_function import get_formatted_name
+class NamesTestCase(unittest.TestCase):
+    """ces"""
+    def test_first_last_name(self):
+        formatted_name = get_formatted_name('hu', 'yuexin')
+        self.assertEqual(formatted_name, 'Hu Yuexin')
+
+unittest.main()
+
+```
+没有测试 为什么？
+没有测试原因 unitest.main()不可用 改为
+```
+if __name__ == '__main__':
+    unittest
+```
+##2. 各种断言
+
+ **- assertEqual(a,b) 
+ - assertNotEqual(a,b) 
+ - assertTrue(x) 
+ - assertFalse(x)
+ - assertIn(item,list)
+ - assertNotIn(item,list)**
+
+##3. 方法setUp   先运行这个再运行test方法
+```
+class AnonymousSurvey():
+    '匿名调查'
+    def __init__(self, question):
+        self.question = question
+        self.responses = []
+
+    def show_question(self):
+        print(self.question)
+
+    def store_responses(self, new_responses):
+        self.responses.append(new_responses)
+    def show_results(self):
+        print("Survey results:")
+        for response in self.responses:
+            print('-'+response)
+
+import unittest
+from survey import AnonymousSurvey
+
+class TestAnonymousSurvey(unittest.TestCase):
+    def setUp(self):
+        question = "what language?"
+        self.my_survey=AnonymousSurvey(question)
+        self.responses=['Eng','france','china']
+
+
+    def test_store_single_response(self):
+        self.my_survey.store_responses(self.responses[0])
+        self.assertIn(self.responses[0], self.my_survey.responses)
+    def test_store_three_response(self):
+        for response in self.responses:
+            self.my_survey.store_responses(response)
+        for response in self.responses:
+            self.assertIn(response, self.my_survey.responses)
+
+if __name__ == '__main__':
+    unittest
+```
+#游戏
+```
+import sys
+import pygame
+
+def run_game():
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption('Alien Invision')
+    bg_color = (230,230,230)
+    # 开始游戏循环
+    while True:
+        # 监控键盘和鼠标
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        #重绘屏幕 颜色
+        screen.fill(bg_color)
+        #最近绘制的屏幕课件
+        pygame.display.flip()
+run_game()
+
+```
+#更换库源
+在用户文件加增加 pip文件夹。
+文件pip.ini中内容为以下内容
+```
+[global]
+ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = pypi.douban.com
+
+```
+#matplotlib
+平方图 中文字体解决办法
+```
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
+import matplotlib
+#中文字体使用解决 画图中文显示问题
+import matplotlib.pyplot as plt
+zhfont1 = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simkai.ttf')
+input_value = [1,2,3,4,5]
+squares = [1,4,9,16,25]
+plt.plot(input_value,squares,linewidth=5)
+plt.title('Square Numbers 平方数图',fontproperties=zhfont1,fontsize=34)
+#xy标签
+plt.xlabel('Value 值',fontproperties=zhfont1,fontsize=20)
+plt.ylabel('square of value 平方值',fontproperties=zhfont1,fontsize=20)
+#标尺 参数   轴  数字大小
+plt.tick_params(axis='both',labelsize=10)
+plt.show()
+```
+
+
+#excel操作
+```
+# -*- coding:utf-8 -*-
+import os
+import xlrd
+import xlwt
+
+file_path = 'C:/Users/10369/PycharmProjects/file_excel/excel'
+file_name = 'test.xls'
+#遍历文件夹并存储文件名称
+def eachfile(file_path):
+    wbk = xlwt.Workbook()
+    sheet = wbk.add_sheet('sheet 1')
+    path_dir = os.listdir(file_path)
+    i = 0
+    for alldir in path_dir:
+        #获取长目录
+        child = os.path.join('%s%s' % (file_path, alldir))
+        #获取文件名字的时候
+        #child = str(alldir)
+
+        sheet.write(i, 0, child)  # 第0行第0列写入内容
+        i +=1
+    wbk.save('test.xls')
+
+
+#读取文件名
+def readFile(filename):
+    workbook = xlrd.open_workbook(filename)
+    sheet2_name = workbook.sheet_names()
+    print(sheet2_name)
+    #从第一个表开始 或指定名字
+    sheet2 = workbook.sheet_by_index(0)
+    #sheet2 = workbook.sheet_by_name('sheet 1')
+    print(sheet2.name, sheet2.nrows, sheet2.ncols)
+
+    # 获取整行和整列的值（数组）
+    # 第一行
+    rows = sheet2.row_values(0)
+    print(rows)
+    #第一列
+    cols = sheet2.col_values(0)
+    print(cols)
+
+    # 获取单元格内容
+    #print(sheet2.cell(0, 0).value.encode('utf-8'))
+    print(sheet2.cell(0, 0).value)
+    print(sheet2.cell_value(0, 0))
+    print(sheet2.row(0)[0].value)
+    print(sheet2.col(0)[0].value)
+
+    print(sheet2.cell(0,0).ctype)
+#ctype : 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
+
+readFile(file_name)
+
+
+
+```
+#mail
+```python3
+#coding:utf-8   #强制使用utf-8编码格式
+# -*- coding:utf-8 -*-
+import smtplib
+#加载smtplib模块
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from email.mime.text import MIMEText
+from email.utils import formataddr
+
+import xlrd
+
+#发件人邮箱账号
+my_sender='103698371@qq.com'
+my_password='huyuexin090518'
+my_smtp='smtp.qq.com'
+
+#收件人称呼、邮箱地址、邮箱内容、附件名字
+file_name = 'mail.xls'
+
+def readFile(filename):
+    rowdates = []
+    workbook = xlrd.open_workbook(filename)
+    sheet2_name = workbook.sheet_names()
+    #从第一个表开始 或指定名字
+    sheet2 = workbook.sheet_by_index(0)
+    #sheet2 = workbook.sheet_by_name('sheet 1')
+    for row_i in range(sheet2.nrows):
+        rowdate= sheet2.row_values(row_i)
+        rowdates.append(rowdate)
+    return rowdates
+
+
+
+def mail(my_sender,my_password,my_smtp,maildate_name,maildate_email,maildate_contents,maildate_append,maildate_appendname):
+    ret=True
+    try:
+        msg = MIMEMultipart()
+        msg["Subject"] = "党员信息"
+        msg["From"] = formataddr(["揭阳市揭东第一中学",my_sender])
+        msg["To"] = formataddr([maildate_name,maildate_email])
+
+        # ---这是文字部分---
+        part = MIMEText(maildate_contents,'plain','utf-8')
+        msg.attach(part)
+
+
+        # ---这是附件部分---
+        # xls类型附件
+        part = MIMEApplication(open(maildate_append, 'rb').read())
+        part.add_header('Content-Disposition', 'attachment', filename=maildate_appendname)
+        msg.attach(part)
+
+
+        server=smtplib.SMTP(my_smtp,25)
+        #发件人邮箱中的SMTP服务器，端口是25
+
+        server.login(my_sender,my_password)
+        #括号中对应的是发件人邮箱账号、邮箱密码
+
+        server.sendmail(my_sender,[maildate_email,],msg.as_string())
+        #括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
+
+        server.quit()
+        #这句是关闭连接的意思
+        print('发送成功')
+
+    except Exception:
+        #如果try中的语句没有执行，则会执行下面的ret=False
+        print('发送失败')
+
+
+maildate = readFile(file_name)
+
+for i in range(1,len(maildate)):
+    name = maildate[i][1]
+    email = maildate[i][2]
+    contents =maildate[i][3]
+    appends =maildate[i][4]
+
+    appendname =maildate[i][5]
+    print(appendname)
+    mail(my_sender,my_password,my_smtp,name,email,contents,appends,appendname)
+#ret=mail()
+#if ret:
+#    print("ok")
+#    #如果发送成功则会返回ok，稍等20秒左右就可以收到邮件
+#else:
+#    print("filed")
+#    #如果发送失败则会返回filed
+```
+ 
+ 
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
